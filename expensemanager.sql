@@ -1,10 +1,10 @@
 drop database expensemanagerdb;
 drop user expensemanager;
 create user expensemanager with password 'password';
-create database expensemanager with template=template0 owner=expensemanager;
-\connect expensemanager;
-alter default priviliges grant all on tables to expensemanager;
-alter default priviliges grant all on sequences to expensemanager;
+create database expensemanagerdb with template=template0 owner=expensemanager;
+\connect expensemanagerdb;
+alter default privileges grant all on tables to expensemanager;
+alter default privileges grant all on sequences to expensemanager;
 
 create table em_users (
 user_id integer primary key not null,
@@ -36,6 +36,6 @@ foreign key (category_id) references em_categories(category_id);
 alter table em_transactions add constraint trans_users_fk
 foreign key (user_id) references em_users(user_id);
 
-create sequences em_users_seq increment 1 start 1;
-create sequences em_categories_seq increment 1 start 1;
-create sequences em_transactions_seq increment 1 start 1000;
+create sequence em_users_seq increment 1 start 1;
+create sequence em_categories_seq increment 1 start 1;
+create sequence em_transactions_seq increment 1 start 1000;
